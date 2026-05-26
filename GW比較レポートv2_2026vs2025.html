@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>GW後実績比較 2026 vs 2025</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Meiryo,"Yu Gothic",sans-serif;background:#f0f4f8;color:#222;font-size:14px}
+.wrap{max-width:960px;margin:0 auto;padding:20px}
+h1{font-size:20px;color:#1a3560;border-bottom:3px solid #2471a3;padding-bottom:8px;margin-bottom:18px}
+h2{font-size:15px;color:#1a3560;background:#d6eaf8;border-left:4px solid #2471a3;padding:7px 12px;margin:24px 0 10px}
+.cards{display:flex;gap:14px;margin:12px 0}
+.card{flex:1;background:#fff;border:1px solid #cdd;border-radius:6px;padding:14px;text-align:center}
+.card .yr{font-size:11px;color:#888;margin-bottom:4px}
+.card .big{font-size:22px;font-weight:bold;color:#c0392b}
+.card .sub{font-size:11px;color:#666;margin-top:4px}
+.box{background:#fff;border:1px solid #cdd;border-radius:6px;padding:14px;margin:10px 0}
+.verdict{font-size:15px;font-weight:bold;color:#1a3560;margin-bottom:8px}
+.desc{font-size:13px;color:#444;line-height:1.9}
+.chart-wrap{background:#fff;border:1px solid #cdd;border-radius:6px;padding:16px;margin:10px 0}
+.chart-ttl{font-size:12px;color:#555;margin-bottom:8px;font-weight:bold}
+table{width:100%;border-collapse:collapse;background:#fff;margin:8px 0}
+th{background:#2471a3;color:#fff;padding:7px 10px;font-size:12px;text-align:center}
+th.l{text-align:left}
+td{padding:6px 10px;border:1px solid #dde;font-size:13px;text-align:right}
+td.l{text-align:left;font-weight:bold;color:#1a3560}
+td.sl{text-align:left;padding-left:18px;color:#555}
+tr:nth-child(even){background:#f5f9fc}
+tr.hl{background:#fffde7!important}
+.tag-p{background:#d6eaf8;color:#154360;border-radius:3px;padding:1px 5px;font-size:11px}
+.tag-s{background:#d5f5e3;color:#0b5345;border-radius:3px;padding:1px 5px;font-size:11px}
+.note{font-size:11px;color:#888;margin:4px 0 8px}
+.key{background:#eaf4fb;border-left:3px solid #2471a3;padding:7px 12px;font-size:13px;color:#1a3560;margin:8px 0}
+.bar-bg{display:inline-block;width:100px;height:10px;background:#eee;border-radius:4px;vertical-align:middle;margin-right:4px}
+.bar-fill{display:block;height:100%;background:#2471a3;border-radius:4px}
+.footer{text-align:center;font-size:11px;color:#bbb;margin-top:28px;padding-top:10px;border-top:1px solid #dde}
+h3{font-size:13px;color:#1a3560;margin:14px 0 6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>GW後実績比較レポート｜2026 vs 2025　全国パチンコ・スロット</h1>
+<p class="note">集計期間：GW期間 4/29〜5/6（8日間）　GW後 5/7〜5/25（19日間）／ 出典：P-Brain全国データ</p>
+
+<!-- ① 結論 -->
+<h2>① 結論｜GW期間（4/29〜5/6）とGW後（5/7〜5/25）の比較</h2>
+<div class="box">
+  <p class="verdict">GW後の落ち幅は2026が大きく、特に5/14以降に顕著に悪化した</p>
+  <p class="desc">
+    GW期間（4/29〜5/6）は2026年が台粗利で前年比<strong>+2.60%</strong>と好調。<br>
+    しかしGW後（5/7〜5/25）は週を追うごとに前年割れが拡大し、GW後W3（5/21〜5/25）では<strong>▲6.83%</strong>に達した。<br>
+    GW後全体（5/7〜5/25）の前年比は台粗利▲2.96%・台売上▲0.09%。<br>
+    <strong>落ち幅（GW→GW後 台粗利）：2025年 -23.5% → 2026年 -27.6%</strong>
+  </p>
+</div>
+<div class="cards">
+  <div class="card">
+    <div class="yr">2025年｜GW→GW後 落ち幅（台粗利）</div>
+    <div class="big">-23.5%</div>
+    <div class="sub">台売上 -14.7%</div>
+  </div>
+  <div class="card">
+    <div class="yr">2026年｜GW→GW後 落ち幅（台粗利）</div>
+    <div class="big">-27.6%</div>
+    <div class="sub">台売上 -17.2%</div>
+  </div>
+</div>
+<p class="note">※落ち幅 = (GW後平均 − GW期間平均) ÷ GW期間平均 × 100</p>
+
+<!-- ② 週次推移グラフ -->
+<h2>② 週次台粗利推移グラフ｜GW期間〜GW後3週（全機種・1台1日平均円） 2025 vs 2026 比較</h2>
+<p class="note">GW後をW1(5/7〜5/13)・W2(5/14〜5/20)・W3(5/21〜5/25)に分割。前年比が週ごとにどう変化したかを示す。</p>
+<div class="chart-wrap">
+  <div class="chart-ttl">■ 全体（P+S） 台粗利（円/台/日）の週別前年比推移</div>
+  <canvas id="wkChart" height="80"></canvas>
+</div>
+<div class="key">
+  GW後W1（5/7〜13）は前年比<span style="color:#27ae60;font-weight:bold">+0.1%</span>でほぼ横ばい。W2（5/14〜20）から<span style="color:#c0392b;font-weight:bold">-3.0%</span>と悪化し、
+  W3（5/21〜25）は<span style="color:#c0392b;font-weight:bold">-6.8%</span>まで拡大。2026年は後半になるほど前年比の落ち込みが大きい。
+</div>
+<div class="chart-wrap" style="margin-top:12px">
+  <div class="chart-ttl">■ パチンコ(P)・スロット(S) 別の週別台粗利（円/台/日）</div>
+  <canvas id="psChart" height="100"></canvas>
+</div>
+
+<!-- ③ 日次推移グラフ -->
+<h2>③ 日次台粗利推移グラフ｜2026年4/25〜5/25（全機種・全国平均・1台1日平均円）</h2>
+<p class="note">2026年の日次データ。GW期間（4/29〜5/6、黄色ゾーン）のピークと、GW明け以降の水準変化を示す。</p>
+<div class="chart-wrap">
+  <canvas id="dayChart" height="90"></canvas>
+</div>
+<div class="key">
+  GW中（4/29〜5/6）は台粗利3,427〜4,492円で推移。5/7以降は概ね2,400〜2,800円台に落ち着き、
+  週末（土日）のみ3,400〜3,800円に回復するパターン。5/11・5/19は特に低く2,289〜2,413円。
+</div>
+
+<!-- ④ 全体比較表 -->
+<h2>④ 全体比較表（P＋S合計）｜GW期間（4/29〜5/6）vs GW後（5/7〜5/25）　2025 vs 2026</h2>
+<p class="note">1台1日平均。台アウト=打込数（玉/枚）、台売上・台粗利=円。</p>
+<table>
+<thead><tr><th class="l">期間</th><th class="l">年度</th><th>台アウト</th><th>台売上（円）</th><th>台粗利（円）</th><th>利益率</th></tr></thead><tbody>
+<tr class="hl"><td class="l" rowspan="2">GW期間　4/29〜5/6</td><td>2025</td><td>14,800</td><td>22,417</td><td>3,846</td><td>26.0%</td></tr>
+<tr class="hl"><td>2026</td><td>14,598</td><td>23,063</td><td>3,946</td><td>27.0%</td></tr>
+<tr><td colspan="2" class="sl">前年比</td><td><span style="color:#c0392b;font-weight:bold">-1.4%</span></td><td><span style="color:#27ae60;font-weight:bold">+2.9%</span></td><td><span style="color:#27ae60;font-weight:bold">+2.6%</span></td><td><span style="color:#27ae60;font-weight:bold">+3.8%</span></td></tr>
+<tr class="hl"><td class="l" rowspan="2">GW後　5/7〜5/25</td><td>2025</td><td>12,563</td><td>19,123</td><td>2,943</td><td>23.4%</td></tr>
+<tr class="hl"><td>2026</td><td>12,013</td><td>19,105</td><td>2,856</td><td>23.8%</td></tr>
+<tr><td colspan="2" class="sl">前年比</td><td><span style="color:#c0392b;font-weight:bold">-4.4%</span></td><td><span style="color:#c0392b;font-weight:bold">-0.1%</span></td><td><span style="color:#c0392b;font-weight:bold">-3.0%</span></td><td><span style="color:#27ae60;font-weight:bold">+1.7%</span></td></tr>
+</tbody></table>
+
+<!-- ⑤ P vs S -->
+<h2>⑤ パチンコ vs スロット｜GW期間（4/29〜5/6）・GW後（5/7〜5/25）　2025 vs 2026</h2>
+<div class="box">
+  <p class="verdict">GW期間はスロット主導、GW後はパチンコの前年比悪化が大きい</p>
+  <p class="desc">
+    <strong>GW期間：</strong>スロット台粗利+6.74%と大幅好調。パチンコは台売上+0.10%でほぼ前年並み。<br>
+    <strong>GW後：</strong>パチンコ台粗利▲3.57%。スロット台粗利▲3.03%。<br>
+    <strong>落ち幅（台粗利）：パチンコ -24.5%→-25.9%　スロット -22.2%→-29.3%</strong>
+  </p>
+</div>
+<h3>パチンコ（P）</h3>
+<table>
+<thead><tr><th class="l">期間</th><th class="l">年度</th><th>台アウト</th><th>台売上（円）</th><th>台粗利（円）</th><th>利益率</th></tr></thead><tbody>
+<tr class="hl"><td class="l" rowspan="2">GW期間　4/29〜5/6</td><td>2025</td><td>17,341</td><td>18,055</td><td>3,640</td><td>21.0%</td></tr>
+<tr class="hl"><td>2026</td><td>16,947</td><td>18,072</td><td>3,573</td><td>21.1%</td></tr>
+<tr><td colspan="2" class="sl">前年比</td><td><span style="color:#c0392b;font-weight:bold">-2.3%</span></td><td><span style="color:#27ae60;font-weight:bold">+0.1%</span></td><td><span style="color:#c0392b;font-weight:bold">-1.8%</span></td><td><span style="color:#27ae60;font-weight:bold">+0.5%</span></td></tr>
+<tr class="hl"><td class="l" rowspan="2">GW後　5/7〜5/25</td><td>2025</td><td>14,831</td><td>15,204</td><td>2,747</td><td>18.5%</td></tr>
+<tr class="hl"><td>2026</td><td>14,071</td><td>14,802</td><td>2,649</td><td>18.8%</td></tr>
+<tr><td colspan="2" class="sl">前年比</td><td><span style="color:#c0392b;font-weight:bold">-5.1%</span></td><td><span style="color:#c0392b;font-weight:bold">-2.6%</span></td><td><span style="color:#c0392b;font-weight:bold">-3.6%</span></td><td><span style="color:#27ae60;font-weight:bold">+1.6%</span></td></tr>
+</tbody></table>
+<h3>スロット（S）</h3>
+<table>
+<thead><tr><th class="l">期間</th><th class="l">年度</th><th>台アウト</th><th>台売上（円）</th><th>台粗利（円）</th><th>利益率</th></tr></thead><tbody>
+<tr class="hl"><td class="l" rowspan="2">GW期間　4/29〜5/6</td><td>2025</td><td>11,463</td><td>28,142</td><td>4,117</td><td>35.9%</td></tr>
+<tr class="hl"><td>2026</td><td>11,776</td><td>29,059</td><td>4,394</td><td>37.3%</td></tr>
+<tr><td colspan="2" class="sl">前年比</td><td><span style="color:#27ae60;font-weight:bold">+2.7%</span></td><td><span style="color:#27ae60;font-weight:bold">+3.3%</span></td><td><span style="color:#27ae60;font-weight:bold">+6.7%</span></td><td><span style="color:#27ae60;font-weight:bold">+3.9%</span></td></tr>
+<tr class="hl"><td class="l" rowspan="2">GW後　5/7〜5/25</td><td>2025</td><td>9,574</td><td>24,286</td><td>3,202</td><td>33.4%</td></tr>
+<tr class="hl"><td>2026</td><td>9,542</td><td>24,271</td><td>3,105</td><td>32.5%</td></tr>
+<tr><td colspan="2" class="sl">前年比</td><td><span style="color:#c0392b;font-weight:bold">-0.3%</span></td><td><span style="color:#c0392b;font-weight:bold">-0.1%</span></td><td><span style="color:#c0392b;font-weight:bold">-3.0%</span></td><td><span style="color:#c0392b;font-weight:bold">-2.7%</span></td></tr>
+</tbody></table>
+
+<!-- ⑥ 機種別貢献度 -->
+<h2>⑥ 機種別貢献度ランキング｜GW後2026年（5/7〜5/25）100台以上　全国参加ホール</h2>
+<p class="note">
+  貢献度 = 台数（週平均設置台数） × 台粗利（1台1日平均）÷ 1,000（千円単位）。<br>
+  台数規模と収益力の両方を加味した実質的な業界全体への粗利貢献量を示す。
+</p>
+<table>
+<thead>
+  <tr>
+    <th class="l">機種名</th><th>区分</th><th>台数</th>
+    <th>アウト<br>（玉/枚）</th><th>台粗利<br>（円）</th>
+    <th style="min-width:160px">貢献度（千円）</th>
+  </tr>
+</thead>
+<tbody>
+<tr class="hl"><td class="l">LバイオハザードRE:3 ZD</td><td style="text-align:center"><span class="tag-s">S</span></td><td>2,894</td><td>15,357</td><td>9,864</td><td><span class="bar-bg"><span class="bar-fill" style="width:100%"></span></span> 28,546</td></tr>
+<tr><td class="l">LビッグドリームKR</td><td style="text-align:center"><span class="tag-s">S</span></td><td>1,719</td><td>14,918</td><td>16,025</td><td><span class="bar-bg"><span class="bar-fill" style="width:96%"></span></span> 27,546</td></tr>
+<tr><td class="l">Lパチスロスーパーリオエース2ND02H</td><td style="text-align:center"><span class="tag-s">S</span></td><td>1,876</td><td>16,416</td><td>10,714</td><td><span class="bar-bg"><span class="bar-fill" style="width:70%"></span></span> 20,099</td></tr>
+<tr><td class="l">eバイオハザード6APN</td><td style="text-align:center"><span class="tag-s">S</span></td><td>1,651</td><td>23,238</td><td>11,281</td><td><span class="bar-bg"><span class="bar-fill" style="width:65%"></span></span> 18,624</td></tr>
+<tr><td class="l">eカケグルイ～生か死か～LTT-KR</td><td style="text-align:center"><span class="tag-s">S</span></td><td>1,495</td><td>24,044</td><td>8,844</td><td><span class="bar-bg"><span class="bar-fill" style="width:46%"></span></span> 13,221</td></tr>
+<tr><td class="l">eひきこまり吸血姫の悶々FHV</td><td style="text-align:center"><span class="tag-s">S</span></td><td>849</td><td>27,686</td><td>9,737</td><td><span class="bar-bg"><span class="bar-fill" style="width:28%"></span></span> 8,266</td></tr>
+<tr><td class="l">LタクトオーパスM1</td><td style="text-align:center"><span class="tag-s">S</span></td><td>691</td><td>16,554</td><td>9,568</td><td><span class="bar-bg"><span class="bar-fill" style="width:23%"></span></span> 6,611</td></tr>
+<tr><td class="l">PAフィーバークィーンIIYS</td><td style="text-align:center"><span class="tag-p">P</span></td><td>909</td><td>21,963</td><td>2,447</td><td><span class="bar-bg"><span class="bar-fill" style="width:7%"></span></span> 2,224</td></tr>
+<tr><td class="l">P戦国無双N</td><td style="text-align:center"><span class="tag-p">P</span></td><td>239</td><td>15,737</td><td>6,374</td><td><span class="bar-bg"><span class="bar-fill" style="width:5%"></span></span> 1,523</td></tr>
+<tr><td class="l">Pクイーンズブレイド奈落V3B</td><td style="text-align:center"><span class="tag-p">P</span></td><td>193</td><td>13,590</td><td>6,561</td><td><span class="bar-bg"><span class="bar-fill" style="width:4%"></span></span> 1,266</td></tr>
+<tr><td class="l">eルパン三世VSキャッツアイLBM6</td><td style="text-align:center"><span class="tag-s">S</span></td><td>178</td><td>17,056</td><td>6,652</td><td><span class="bar-bg"><span class="bar-fill" style="width:4%"></span></span> 1,184</td></tr>
+</tbody>
+</table>
+<div class="key">
+  スロット上位機種（LバイオRE:3：2,894台×9,864円）が貢献度トップ。
+  パチンコ最上位（PAフィーバークィーンII：909台）はスロット下位機種にも及ばず、台数規模の差が収益構造を決定づけている。
+</div>
+
+<!-- ⑦ まとめ -->
+<h2>⑦ まとめ</h2>
+<div class="box">
+  <p class="desc" style="line-height:2.2">
+    <strong>GW後の落ち幅は2026が大きく、後半加速した</strong><br>
+    台粗利落ち幅：2025年▲23.5% → 2026年▲27.6%。
+    週別では GW後W1（+0.1%）→ W2（-3.0%）→ W3（-6.8%）と悪化が加速した。<br><br>
+    <strong>パチンコの落ち幅がスロットより大きい</strong><br>
+    GW後パチンコ▲3.57%・スロット▲3.03%。ただし絶対水準はスロット（3,105円）がパチンコ（2,649円）を大きく上回り、スロットが業界全体を下支えした。<br><br>
+    <strong>スロット主要機種の台数規模がパチンコを圧倒</strong><br>
+    貢献度上位8機種中6機種がスロット。最大機種LバイオRE:3（2,894台）の貢献度は
+    パチンコ首位PAフィーバークィーンII（909台）の約12倍。
+  </p>
+</div>
+
+<p class="footer">生成日: 2026年5月26日　／　データ: P-Brain全国データ（ZAnalysisDiffTerm・ZMachineTrans・ZDailyDiff）</p>
+</div>
+
+<script>
+// ── 週次グラフ（全体） ──────────────────────────────────────
+const wkLabels = [['GW期間','4/29〜5/6'],['GW後W1','5/7〜5/13'],['GW後W2','5/14〜5/20'],['GW後W3','5/21〜5/25']];
+new Chart(document.getElementById('wkChart'), {
+  type: 'bar',
+  data: {
+    labels: wkLabels,
+    datasets: [
+      {label:'2025年 台粗利', data:[3846.0, 2964.0, 2795.0, 3117.0], backgroundColor:'rgba(36,113,163,0.7)', borderColor:'#2471a3', borderWidth:1},
+      {label:'2026年 台粗利', data:[3946.0, 2968.0, 2711.0, 2904.0], backgroundColor:'rgba(192,57,43,0.7)', borderColor:'#c0392b', borderWidth:1},
+    ]
+  },
+  options: {
+    responsive:true, plugins:{legend:{position:'top'}, tooltip:{callbacks:{
+      afterLabel: (ctx) => {
+        const v25=[3846.0, 2964.0, 2795.0, 3117.0][ctx.dataIndex], v26=[3946.0, 2968.0, 2711.0, 2904.0][ctx.dataIndex];
+        const pct=((v26-v25)/v25*100).toFixed(1);
+        return ctx.datasetIndex===1 ? `前年比: ${pct>=0?'+':''}${pct}%` : '';
+      }
+    }}},
+    scales:{y:{title:{display:true,text:'円/台/日'},beginAtZero:false,min:2000}}
+  }
+});
+
+// ── 週次グラフ（P/S別） ────────────────────────────────────
+new Chart(document.getElementById('psChart'), {
+  type: 'bar',
+  data: {
+    labels: wkLabels,
+    datasets: [
+      {label:'2025P', data:[3640.0, 2776.0, 2586.0, 2927.0], backgroundColor:'rgba(36,113,163,0.5)', borderColor:'#2471a3', borderWidth:1},
+      {label:'2026P', data:[3573.0, 2749.0, 2504.0, 2712.0], backgroundColor:'rgba(36,113,163,1.0)', borderColor:'#154360', borderWidth:1},
+      {label:'2025S', data:[4117.0, 3212.0, 3071.0, 3366.0], backgroundColor:'rgba(39,174,96,0.5)', borderColor:'#27ae60', borderWidth:1},
+      {label:'2026S', data:[4394.0, 3231.0, 2959.0, 3133.0], backgroundColor:'rgba(39,174,96,1.0)', borderColor:'#1e8449', borderWidth:1},
+    ]
+  },
+  options: {
+    responsive:true,
+    plugins:{legend:{position:'top'}},
+    scales:{y:{title:{display:true,text:'円/台/日'},beginAtZero:false,min:1500}}
+  }
+});
+
+// ── 日次グラフ ──────────────────────────────────────────────
+const gwPlugin = {
+  id:'gwBg',
+  beforeDraw(chart) {
+    const {ctx,chartArea:{top,bottom},scales:{x}} = chart;
+    const x1=x.getPixelForValue(4), x2=x.getPixelForValue(11);
+    ctx.save();
+    ctx.fillStyle='rgba(255,235,59,0.25)';
+    ctx.fillRect(x1,top,x2-x1,bottom-top);
+    ctx.fillStyle='rgba(255,193,7,0.6)';
+    ctx.fillRect(x1,top,1,bottom-top);
+    ctx.fillRect(x2,top,1,bottom-top);
+    ctx.restore();
+  }
+};
+new Chart(document.getElementById('dayChart'), {
+  type: 'line',
+  plugins: [gwPlugin],
+  data: {
+    labels: ['04/25', '04/26', '04/27', '04/28', '04/29', '04/30', '05/01', '05/02', '05/03', '05/04', '05/05', '05/06', '05/07', '05/08', '05/09', '05/10', '05/11', '05/12', '05/13', '05/14', '05/15', '05/16', '05/17', '05/18', '05/19', '05/20', '05/21', '05/22', '05/23', '05/24', '05/25'],
+    datasets: [{
+      label:'2026年 台粗利（全国平均 円/台/日）',
+      data: [3569.0, 3707.0, 2589.0, 2737.0, 3427.0, 3465.0, 3809.0, 4225.0, 4255.0, 4492.0, 3877.0, 3997.0, 2787.0, 2799.0, 3847.0, 3563.0, 2413.0, 2691.0, 2424.0, 2478.0, 2474.0, 3398.0, 3368.0, 2351.0, 2289.0, 2467.0, 2306.0, 2640.0, 3382.0, 3651.0, 2423.0],
+      borderColor:'#c0392b', backgroundColor:'rgba(192,57,43,0.08)',
+      pointRadius:3, tension:0.2, fill:true
+    }]
+  },
+  options: {
+    responsive:true,
+    plugins:{
+      legend:{position:'top'},
+      tooltip:{callbacks:{title:([ctx])=>'2026/'+ctx.label}}
+    },
+    scales:{
+      x:{ticks:{maxRotation:45,autoSkip:false,font:{size:10}}},
+      y:{title:{display:true,text:'円/台/日'},beginAtZero:false,min:1800}
+    }
+  }
+});
+</script>
+</body>
+</html>
