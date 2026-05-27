@@ -3,252 +3,228 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>自社 vs 全国 GW比較レポート 2026</title>
+<title>自社 vs 全国 GW後売上要因レポート 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Hiragino Kaku Gothic Pro','Meiryo',sans-serif;font-size:13px;background:#f5f7fa;color:#222;line-height:1.5}
-.page{max-width:960px;margin:0 auto;padding:16px}
+.page{max-width:1000px;margin:0 auto;padding:16px}
 h1{font-size:18px;font-weight:700;padding:12px 16px;background:#1a3a5c;color:#fff;border-radius:6px;margin-bottom:12px}
 h2{font-size:14px;font-weight:700;padding:6px 12px;background:#2c5f8a;color:#fff;border-radius:4px;margin:16px 0 8px}
+h3{font-size:13px;font-weight:700;margin:8px 0 6px;color:#1a3a5c}
 .section{background:#fff;border:1px solid #dce3ea;border-radius:6px;padding:14px;margin-bottom:14px}
 .meta{font-size:11px;color:#666;margin-bottom:8px}
 table{border-collapse:collapse;width:100%;font-size:12px}
-th{background:#2c5f8a;color:#fff;padding:5px 8px;text-align:center;font-weight:600}
-td{padding:5px 8px;border-bottom:1px solid #e8edf3;text-align:right}
+th{background:#2c5f8a;color:#fff;padding:6px 8px;text-align:center;font-weight:600}
+td{padding:6px 8px;border-bottom:1px solid #e8edf3;text-align:right;vertical-align:middle}
 td.lbl{text-align:left;font-weight:600;background:#f0f4f8}
-tr.nat{background:#fafbfc} tr.com{background:#eef4ff}
-.pos{color:#c00;font-weight:700} .neg{color:#1a5c2a;font-weight:700} .neu{color:#555}
+td.txt{text-align:left}.pos{color:#c00;font-weight:700}.neg{color:#1a5c2a;font-weight:700}.neu{color:#555;font-weight:700}
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px}
-.kpi{background:#f0f4ff;border:1px solid #c5d5ee;border-radius:6px;padding:10px 12px;text-align:center}
-.kpi .val{font-size:22px;font-weight:700;color:#1a3a5c}
-.kpi .lbl2{font-size:10px;color:#666;margin-top:2px}
-.kpi .sub{font-size:11px;margin-top:4px}
-.highlight-green{background:#e8f5e9;border-left:3px solid #2e7d32;padding:6px 10px;border-radius:0 4px 4px 0;margin:4px 0}
-.highlight-red{background:#ffebee;border-left:3px solid #c62828;padding:6px 10px;border-radius:0 4px 4px 0;margin:4px 0}
-.highlight-blue{background:#e3f2fd;border-left:3px solid #1565c0;padding:6px 10px;border-radius:0 4px 4px 0;margin:4px 0}
-canvas{max-height:260px}
-.note{font-size:11px;color:#666;margin-top:6px}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kpi{background:#f0f4ff;border:1px solid #c5d5ee;border-radius:6px;padding:10px 12px;text-align:center;min-height:96px}
+.kpi .val{font-size:22px;font-weight:700;color:#1a3a5c}.kpi .lbl2{font-size:10px;color:#666;margin-top:2px}.kpi .sub{font-size:11px;margin-top:4px}
+.highlight-green{background:#e8f5e9;border-left:3px solid #2e7d32;padding:8px 10px;border-radius:0 4px 4px 0;margin:6px 0}
+.highlight-red{background:#ffebee;border-left:3px solid #c62828;padding:8px 10px;border-radius:0 4px 4px 0;margin:6px 0}
+.highlight-blue{background:#e3f2fd;border-left:3px solid #1565c0;padding:8px 10px;border-radius:0 4px 4px 0;margin:6px 0}
+.highlight-yellow{background:#fff8e1;border-left:3px solid #f9a825;padding:8px 10px;border-radius:0 4px 4px 0;margin:6px 0}
+.note{font-size:11px;color:#666;margin-top:6px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.chart-box{height:300px}canvas{max-height:300px}.small{font-size:11px;color:#666}.tag{display:inline-block;background:#eef4ff;border:1px solid #c5d5ee;border-radius:12px;padding:2px 8px;margin:2px;font-size:11px;color:#1a3a5c}
+@media(max-width:760px){.kpi-grid,.two-col,.three-col{grid-template-columns:1fr}.page{padding:10px}}
 </style>
 </head>
 <body>
 <div class="page">
-<h1>自社（nexus-dstationグループ）vs 全国 GW比較レポート 2026</h1>
+<h1>自社（nexus-dstationグループ）vs 全国 GW後売上要因レポート 2026</h1>
 
-<!-- ① 結論 -->
-<h2>① 結論：自社の立ち位置</h2>
+<h2>① 結論：GW後の売上は自社が全国をやや上回る</h2>
 <div class="section">
-  <p class="meta">指標：台売上（円/台/日） ｜ 期間：GW=2026/4/27〜5/6（10日間）、GW後=5/7〜5/25（19日間）</p>
+  <p class="meta">対象：GW後2週（5/11週・5/18週）｜ 指標：現金売上昨対。利益指標は本資料では対象外。</p>
   <div class="kpi-grid">
     <div class="kpi">
-      <div class="val">+6.3%</div>
-      <div class="lbl2">自社GW台売上 全国比</div>
-      <div class="sub">自社24,525円 vs 全国23,063円</div>
+      <div class="val">+4.3%</div>
+      <div class="lbl2">自社 全体現金売上 昨対</div>
+      <div class="sub">全国+4.0%に対し +0.3pp</div>
     </div>
     <div class="kpi">
-      <div class="val" style="color:#c00">▲3.4pp</div>
-      <div class="lbl2">GW前年比差（自社－全国）</div>
-      <div class="sub">自社−0.5% vs 全国+2.9%</div>
+      <div class="val" style="color:#c00">+10.1%</div>
+      <div class="lbl2">自社 S-20〜 現金売上 昨対</div>
+      <div class="sub">全国+9.1%に対し +1.1pp</div>
     </div>
     <div class="kpi">
-      <div class="val">+4.7%</div>
-      <div class="lbl2">自社GW後台売上 全国比</div>
-      <div class="sub">自社20,006円 vs 全国19,105円</div>
+      <div class="val" style="color:#1a5c2a">▲3.7%</div>
+      <div class="lbl2">自社 P-4〜 現金売上 昨対</div>
+      <div class="sub">全国▲3.0%に対し -0.7pp</div>
     </div>
     <div class="kpi">
-      <div class="val" style="color:#1a5c2a">+0.8pp</div>
-      <div class="lbl2">GW後前年比差（自社－全国）</div>
-      <div class="sub">自社+0.7% vs 全国−0.1%</div>
+      <div class="val">+10.0%</div>
+      <div class="lbl2">D'station 20S台数 月次</div>
+      <div class="sub">2025/05→2026/05。アウトは+0.8%</div>
     </div>
   </div>
   <div class="highlight-blue">
-    <strong>総評：</strong>台売上の絶対値は全国平均を+4〜6%上回っており、安定した競争力を維持。ただしGW期間の前年比は全国+2.9%に対し自社−0.5%と<strong>3.4pp弱く</strong>、GW後は逆に自社が+0.8pp上回りリカバリーした。
+    <strong>更新後の見立て：</strong>GW後の売上は自社が全国をやや上回る。牽引はS-20〜で、P-4〜は全国より弱い。S-20優位の主因は「稼働の大幅上昇」ではなく、<strong>20S台数を増やしながらアウトを維持できたこと</strong>と見る。
   </div>
 </div>
 
-<!-- ② 全体比較表 -->
-<h2>② 自社 vs 全国 台売上比較表（全機種合計）</h2>
+<h2>② レート別：GW後2週 現金売上昨対</h2>
 <div class="section">
-  <p class="meta">指標：台売上（円/台/日）の期間平均値 ｜ 全機種（P+S合算、稼働台数加重平均）</p>
+  <p class="meta">5/11週・5/18週の2週合計。現金売上ベース。</p>
   <table>
-    <colgroup><col style="width:14%"><col style="width:14%"><col style="width:14%"><col style="width:12%"><col style="width:14%"><col style="width:14%"><col style="width:12%"><col style="width:10%"></colgroup>
-    <tr><th></th><th>全国2025</th><th>全国2026</th><th>全国YoY</th><th>自社2025</th><th>自社2026</th><th>自社YoY</th><th>自社差（全国比）</th></tr>
+    <tr><th style="width:25%">区分</th><th>自社2025</th><th>自社2026</th><th>自社昨対</th><th>全国昨対</th><th>自社-全国</th><th>判定</th></tr>
     <tr>
-      <td class="lbl">GW期間<br><span style="font-size:10px;font-weight:400">4/27〜5/6</span></td>
-      <td>22,417</td><td>23,063</td><td class="pos">+2.9%</td>
-      <td>24,649</td><td>24,525</td><td class="neg">−0.5%</td>
-      <td class="pos"><strong>+1,462円</strong></td>
+      <td class="lbl">全体</td><td>127.3億</td><td>132.7億</td><td class="pos">+4.3%</td><td class="pos">+4.0%</td><td class="pos">+0.3pp</td><td class="txt">自社がやや上</td>
     </tr>
     <tr>
-      <td class="lbl">GW後<br><span style="font-size:10px;font-weight:400">5/7〜5/25</span></td>
-      <td>19,123</td><td>19,105</td><td class="neu">−0.1%</td>
-      <td>19,873</td><td>20,006</td><td class="pos">+0.7%</td>
-      <td class="pos"><strong>+901円</strong></td>
+      <td class="lbl">P-4〜</td><td>53.8億</td><td>51.7億</td><td class="neg">▲3.7%</td><td class="neg">▲3.0%</td><td class="neg">▲0.7pp</td><td class="txt">全国より弱い</td>
     </tr>
     <tr>
-      <td class="lbl">5/11週</td>
-      <td>19,353</td><td>19,380</td><td class="neu">+0.1%</td>
-      <td>18,812</td><td>20,014</td><td class="pos"><strong>+6.4%</strong></td>
-      <td class="pos">+634円</td>
-    </tr>
-    <tr>
-      <td class="lbl">5/18週</td>
-      <td>18,302</td><td>18,576</td><td class="neu">+1.5%</td>
-      <td>19,294</td><td>19,302</td><td class="neu">+0.0%</td>
-      <td class="pos">+726円</td>
+      <td class="lbl">S-20〜</td><td>73.5億</td><td>81.0億</td><td class="pos">+10.1%</td><td class="pos">+9.1%</td><td class="pos">+1.1pp</td><td class="txt"><strong>売上増の主役</strong></td>
     </tr>
   </table>
-  <p class="note">※GW後合計は5/7〜5/25の全日平均。週別は月〜日（P-Brain週区分）。</p>
+  <div class="chart-box"><canvas id="rateChart"></canvas></div>
+  <p class="note">※億表示は四捨五入。差分は小数第1位表記のため合計に端数あり。</p>
 </div>
 
-<!-- ③ 週次推移グラフ -->
-<h2>③ 週次推移グラフ（台売上 全国 vs 自社）</h2>
+<h2>③ 週別：S-20は2週とも全国以上、全体は5/11週が押し上げ</h2>
 <div class="section">
-  <p class="meta">指標：台売上（円/台/日）の週別平均 ｜ 4系列で2025・2026の全国・自社を比較</p>
-  <canvas id="weekChart"></canvas>
-  <p class="note">GW=4/27〜5/6（10日平均）、W1=5/11〜5/17、W2=5/18〜5/24</p>
-</div>
-
-<!-- ④ P/S別比較 -->
-<h2>④ 機種別（P/S）比較</h2>
-<div class="section">
-  <p class="meta">指標：台売上（円/台/日）の期間平均 ｜ P=パチンコ、S=スロット</p>
   <div class="two-col">
     <div>
-      <strong style="font-size:12px">GW期間（4/27〜5/6）</strong>
-      <table style="margin-top:6px">
-        <tr><th></th><th>全国2025</th><th>全国2026</th><th>自社2025</th><th>自社2026</th></tr>
-        <tr><td class="lbl">P台</td><td>18,055</td><td>18,072</td><td>20,013</td><td>19,385</td></tr>
-        <tr><td class="lbl">S台</td><td>28,142</td><td>29,059</td><td>30,812</td><td>30,441</td></tr>
-        <tr><td class="lbl">合計</td><td>22,417</td><td>23,063</td><td>24,649</td><td>24,525</td></tr>
+      <table>
+        <tr><th>区分</th><th>5/11週 自社</th><th>5/11週 全国</th><th>差</th></tr>
+        <tr><td class="lbl">全体</td><td class="pos">+7.1%</td><td class="pos">+6.3%</td><td class="pos">+0.8pp</td></tr>
+        <tr><td class="lbl">P-4〜</td><td class="neg">▲1.8%</td><td class="neg">▲1.2%</td><td class="neg">▲0.6pp</td></tr>
+        <tr><td class="lbl">S-20〜</td><td class="pos">+13.5%</td><td class="pos">+11.7%</td><td class="pos">+1.9pp</td></tr>
       </table>
     </div>
     <div>
-      <strong style="font-size:12px">GW後（5/7〜5/25）</strong>
-      <table style="margin-top:6px">
-        <tr><th></th><th>全国2025</th><th>全国2026</th><th>自社2025</th><th>自社2026</th></tr>
-        <tr><td class="lbl">P台</td><td>15,204</td><td>14,802</td><td>15,807</td><td>15,633</td></tr>
-        <tr><td class="lbl">S台</td><td>24,286</td><td>24,271</td><td>25,273</td><td>25,029</td></tr>
-        <tr><td class="lbl">合計</td><td>19,123</td><td>19,105</td><td>19,873</td><td>20,006</td></tr>
+      <table>
+        <tr><th>区分</th><th>5/18週 自社</th><th>5/18週 全国</th><th>差</th></tr>
+        <tr><td class="lbl">全体</td><td class="pos">+1.7%</td><td class="pos">+1.8%</td><td class="neu">▲0.1pp</td></tr>
+        <tr><td class="lbl">P-4〜</td><td class="neg">▲5.5%</td><td class="neg">▲4.7%</td><td class="neg">▲0.8pp</td></tr>
+        <tr><td class="lbl">S-20〜</td><td class="pos">+6.9%</td><td class="pos">+6.6%</td><td class="pos">+0.4pp</td></tr>
       </table>
     </div>
   </div>
-  <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
-    <div class="highlight-red">
-      <strong>GW前年比：自社 vs 全国</strong><br>
-      P台：自社−3.1% vs 全国+0.1%　→　差▲3.2pp<br>
-      S台：自社−1.2% vs 全国+3.3%　→　差▲4.5pp
-    </div>
-    <div class="highlight-green">
-      <strong>GW後前年比：自社 vs 全国</strong><br>
-      P台：自社−1.1% vs 全国−2.8%　→　差+1.7pp<br>
-      S台：自社−1.0% vs 全国−0.3%　→　差−0.7pp
-    </div>
+  <div class="chart-box"><canvas id="weekChart"></canvas></div>
+  <div class="highlight-yellow">
+    <strong>読み取り：</strong>全体の優位は5/11週で作っている。5/18週は全体では全国並みだが、S-20〜は2週とも全国を上回っているため、GW後の売上増はS-20〜主導と判断できる。
   </div>
 </div>
 
-<!-- ⑤ 要因分析 -->
-<h2>⑤ 要因分析</h2>
+<h2>④ S-20優位の要因：20S増台 × アウト維持</h2>
 <div class="section">
-  <p class="meta">なぜGW期間は全国に劣後し、GW後は上回ったのか？</p>
-
-  <div class="highlight-red" style="margin-bottom:8px">
-    <strong>【課題】GW期間 −3.4pp差の背景</strong><br>
-    ①&nbsp;S台が全国比で特に弱かった（自社−1.2% vs 全国+3.3%、差▲4.5pp）。GW期間に全国ではS機種の客付きが伸びた一方、自社では同水準の恩恵を受けられなかった。<br>
-    ②&nbsp;P台も全国比弱く（自社−3.1% vs 全国+0.1%、差▲3.2pp）、機種・台数構成の差ではなくGW集客力自体に課題が残る可能性がある。
-  </div>
-
-  <div class="highlight-green" style="margin-bottom:8px">
-    <strong>【強み】GW後 +0.8pp差の背景</strong><br>
-    ①&nbsp;P台が全国比+1.7pp優位（自社−1.1% vs 全国−2.8%）。GW後のP台は全国的に下降傾向だが、自社は比較的健闘。調整・機種ラインナップの良さが維持に貢献か。<br>
-    ②&nbsp;5/11週に自社+6.4%の大幅改善（全国+0.1%）。GW後導入機種（バイオハザードRE:3 2,461台、スーパーリオ2 1,590台等）のデビュー週効果が発現した可能性がある。
-  </div>
-
-  <div class="highlight-blue">
-    <strong>【構造的優位性】絶対値では全体を通じて全国+4〜6%上位</strong><br>
-    台売上の絶対水準はGW期間+6.3%、GW後+4.7%と全国を安定的に上回っている。これはマーケットシェアの競争力として維持できており、前年比の一時的な弱さは「全国が特に強かったGWの波に乗り切れなかった」と解釈できる。
-  </div>
-</div>
-
-<!-- ⑥ まとめ -->
-<h2>⑥ まとめ・改善示唆</h2>
-<div class="section">
+  <p class="meta">補足資料：20Sの月次推移（2025/05→2026/05）。全国は台数合計、D'stationは総台数・アウト。</p>
   <table>
-    <tr><th style="width:30%">観点</th><th>評価</th><th>示唆</th></tr>
+    <tr><th style="width:28%">指標</th><th>2025/05</th><th>2026/05</th><th>変化</th><th>読み取り</th></tr>
     <tr>
-      <td class="lbl">GW期間 全国比</td>
-      <td><span class="pos">■ 絶対値優位</span><br><span class="neg">▲ YoY差：−3.4pp</span></td>
-      <td>S台GW集客力を強化。新台S機種のGW前投入を検討</td>
+      <td class="lbl">全国 20S台数合計</td><td>8,925,735.5</td><td>9,418,438.4</td><td class="pos">+5.5%</td><td class="txt">全国も20S増加</td>
     </tr>
     <tr>
-      <td class="lbl">GW後 全国比</td>
-      <td><span class="pos">● YoY差：+0.8pp<br>● 絶対値優位+4.7%</span></td>
-      <td>GW後の機種戦略（新台投入）は効果的。継続強化</td>
+      <td class="lbl">D'station 20S総台数</td><td>22,576.3</td><td>24,840.4</td><td class="pos">+10.0%</td><td class="txt"><strong>全国以上に増台</strong></td>
     </tr>
     <tr>
-      <td class="lbl">P台 競争力</td>
-      <td><span class="pos">● GW後+1.7pp優位</span></td>
-      <td>P台の状態維持・機種選定は全国より優秀。継続</td>
+      <td class="lbl">D'station 20Sアウト</td><td>9,209</td><td>9,286</td><td class="pos">+0.8%</td><td class="txt">増台しても客が薄まっていない</td>
     </tr>
     <tr>
-      <td class="lbl">S台 競争力</td>
-      <td><span class="neg">▲ GW期間−4.5pp差</span><br><span class="neu">△ GW後−0.7pp差</span></td>
-      <td>S台GW施策の見直し。特に大型連休期の販促・客付き強化が課題</td>
+      <td class="lbl">全国 20S稼働率</td><td>32.2%</td><td>33.0%</td><td class="pos">+0.8pp</td><td class="txt">全国もやや上昇</td>
     </tr>
   </table>
+  <div class="three-col" style="margin-top:10px">
+    <div class="highlight-green"><strong>台数要因</strong><br>自社は20S台数を全国以上に増やしている。</div>
+    <div class="highlight-green"><strong>稼働要因</strong><br>アウトは大幅増ではないが、増台後も前年並みを維持。</div>
+    <div class="highlight-blue"><strong>結論</strong><br>S-20売上増は「増台×アウト維持」の寄与が大きい。</div>
+  </div>
+</div>
+
+<h2>⑤ 20S機種別：自社の売上構成が厚い機種・薄い機種</h2>
+<div class="section">
+  <p class="meta">追加シートの20S機種別データより。5/11週・5/18週の台売上シェア差（自社−全国）の平均。</p>
+  <div class="two-col">
+    <div>
+      <h3>自社が全国より厚い機種</h3>
+      <table>
+        <tr><th>機種</th><th>平均差</th></tr>
+        <tr><td class="lbl">S/沖ドキ！BLACK/EP</td><td class="pos">+1.2pp</td></tr>
+        <tr><td class="lbl">SネオアイムジャグラーEX-KK</td><td class="pos">+1.1pp</td></tr>
+        <tr><td class="lbl">LビッグドリームKR</td><td class="pos">+0.9pp</td></tr>
+        <tr><td class="lbl">L/真打吉宗/A1</td><td class="pos">+0.5pp</td></tr>
+        <tr><td class="lbl">Lスマスロ北斗の拳 転生の章2</td><td class="pos">+0.4pp</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>自社が全国より薄い機種</h3>
+      <table>
+        <tr><th>機種</th><th>平均差</th></tr>
+        <tr><td class="lbl">SキングハナハナSP-30</td><td class="neg">▲1.0pp</td></tr>
+        <tr><td class="lbl">S/沖ドキ！GOLD/GS</td><td class="neg">▲0.7pp</td></tr>
+        <tr><td class="lbl">Sファンキージャグラー2KT</td><td class="neg">▲0.4pp</td></tr>
+        <tr><td class="lbl">L革命機ヴァルヴレイヴ2jF</td><td class="neg">▲0.3pp</td></tr>
+        <tr><td class="lbl">LバイオハザードRE:3</td><td class="neg">▲0.3pp</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="highlight-blue">
+    <strong>読み取り：</strong>自社のS-20売上増は、20S全体の台数増に加え、沖ドキBLACK・ネオアイム・ビッグドリームなどの構成寄与が大きい。一方、ハナハナ・一部ジャグラー・ヴヴヴ・バイオRE:3は全国より構成が薄く、追加確認ポイント。
+  </div>
+</div>
+
+<h2>⑥ まとめ・次に見るべきこと</h2>
+<div class="section">
+  <table>
+    <tr><th style="width:28%">観点</th><th style="width:24%">評価</th><th>示唆</th></tr>
+    <tr>
+      <td class="lbl">GW後 全体売上</td>
+      <td class="pos">自社+4.3% / 全国+4.0%</td>
+      <td class="txt">自社がやや上。資料では「全国を大きく上回る」ではなく「やや上回る」が妥当。</td>
+    </tr>
+    <tr>
+      <td class="lbl">S-20〜</td>
+      <td class="pos">自社+10.1% / 全国+9.1%</td>
+      <td class="txt">売上増の主役。2週とも全国を上回る。</td>
+    </tr>
+    <tr>
+      <td class="lbl">P-4〜</td>
+      <td class="neg">自社▲3.7% / 全国▲3.0%</td>
+      <td class="txt">全体の伸びを抑えている。Sの好調と分けて説明する。</td>
+    </tr>
+    <tr>
+      <td class="lbl">S-20の要因</td>
+      <td class="pos">20S増台 + アウト維持</td>
+      <td class="txt">「稼働爆伸び」ではなく、増台しても稼働を崩さなかった点がポイント。</td>
+    </tr>
+    <tr>
+      <td class="lbl">追加確認</td>
+      <td class="neu">店舗別・増台店別</td>
+      <td class="txt">全店で強いのか、一部大型店・特定機種が押し上げているのかを確認する。</td>
+    </tr>
+  </table>
+  <div class="highlight-green">
+    <strong>資料の締め文：</strong>GW後の自社売上は全国をやや上回り、牽引はS-20〜。要因は20S台数を全国以上に増やしながらアウトを維持できたこと。P-4〜は全国より弱いため、売上増はS主導と整理する。
+  </div>
 </div>
 
 </div>
-
 <script>
-const weeks = ['GW\n(4/27-5/6)', '5/11週\n(W1)', '5/18週\n(W2)'];
-const nat25  = [22417, 19353, 18302];
-const nat26  = [23063, 19380, 18576];
-const com25  = [24649, 18812, 19294];
-const com26  = [24525, 20014, 19302];
-
-const gwPlugin = {
-  id:'gwBg',
-  beforeDraw(chart) {
-    const {ctx,chartArea:{left,right,top,bottom},scales} = chart;
-    if (!scales.x) return;
-    const x0 = scales.x.getPixelForValue(0);
-    const x1 = scales.x.getPixelForValue(0.5);
-    ctx.save();
-    ctx.fillStyle='rgba(255,200,0,0.08)';
-    ctx.fillRect(left,top,x1-left,bottom-top);
-    ctx.restore();
-  }
+const commonOptions = {
+  responsive:true,
+  maintainAspectRatio:false,
+  plugins:{legend:{position:'bottom',labels:{font:{size:11}}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y.toFixed(1)}%`}}},
+  scales:{y:{ticks:{callback:v=>v+'%'},grid:{color:'rgba(0,0,0,0.06)'}}}
 };
-
-new Chart(document.getElementById('weekChart'), {
+new Chart(document.getElementById('rateChart'),{
   type:'bar',
-  plugins:[gwPlugin],
-  data:{
-    labels: weeks,
-    datasets:[
-      {label:'全国2025',data:nat25,backgroundColor:'rgba(70,130,180,0.25)',borderColor:'rgba(70,130,180,0.7)',borderWidth:1.5,type:'bar'},
-      {label:'全国2026',data:nat26,backgroundColor:'rgba(70,130,180,0.65)',borderColor:'rgba(70,130,180,1)',borderWidth:1.5,type:'bar'},
-      {label:'自社2025',data:com25,backgroundColor:'rgba(210,80,50,0.0)',borderColor:'rgba(210,80,50,0.6)',borderWidth:2,type:'line',tension:0.3,pointRadius:4},
-      {label:'自社2026',data:com26,backgroundColor:'rgba(210,80,50,0.0)',borderColor:'rgba(210,80,50,1)',borderWidth:2.5,type:'line',tension:0.3,pointRadius:5,pointStyle:'circle'},
-    ]
-  },
-  options:{
-    responsive:true,
-    interaction:{mode:'index',intersect:false},
-    plugins:{
-      legend:{position:'bottom',labels:{font:{size:11}}},
-      tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y.toLocaleString()}円`}}
-    },
-    scales:{
-      y:{
-        title:{display:true,text:'台売上（円/台/日）',font:{size:11}},
-        min:15000,max:28000,
-        ticks:{callback:v=>v.toLocaleString()}
-      }
-    }
-  }
+  data:{labels:['全体','P-4〜','S-20〜'],datasets:[
+    {label:'自社 昨対',data:[4.3,-3.7,10.1],backgroundColor:'rgba(210,80,50,0.75)',borderColor:'rgba(210,80,50,1)',borderWidth:1},
+    {label:'全国 昨対',data:[4.0,-3.0,9.1],backgroundColor:'rgba(70,130,180,0.65)',borderColor:'rgba(70,130,180,1)',borderWidth:1}
+  ]},
+  options:commonOptions
+});
+new Chart(document.getElementById('weekChart'),{
+  type:'bar',
+  data:{labels:['5/11週 全体','5/11週 S-20','5/18週 全体','5/18週 S-20'],datasets:[
+    {label:'自社 昨対',data:[7.1,13.5,1.7,6.9],backgroundColor:'rgba(210,80,50,0.75)',borderColor:'rgba(210,80,50,1)',borderWidth:1},
+    {label:'全国 昨対',data:[6.3,11.7,1.8,6.6],backgroundColor:'rgba(70,130,180,0.65)',borderColor:'rgba(70,130,180,1)',borderWidth:1}
+  ]},
+  options:commonOptions
 });
 </script>
 </body>
